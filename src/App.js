@@ -8,18 +8,24 @@ function App() {
 
   const id = getRandomNumber();
 
-  const handleCreateBook = (title) => {
+  const createBook = (title) => {
     const updatedBooks = [...books, { id: id, title }];
 
     setBooks(updatedBooks);
   };
 
-  console.log(books);
+  const deleteBookByID = (id) => {
+    const deletedBooks = books.filter((book) => {
+      return book.id !== id;
+    });
+
+    setBooks(deletedBooks);
+  };
 
   return (
     <div className="app">
-      <BookList books={books} />
-      <BookCreate onCreate={handleCreateBook} />
+      <BookList books={books} onDelete={deleteBookByID} />
+      <BookCreate onCreate={createBook} />
     </div>
   );
 }
