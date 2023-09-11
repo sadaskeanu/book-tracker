@@ -1,11 +1,12 @@
-import { useState, useContext } from "react";
-import BooksContext from "../context/books";
+import { useState } from "react";
+
 import BookEdit from "./BookEdit";
+import useBooksContext from "../hooks/useBooksContext";
 
 function BookShow({ book }) {
   const [showEdit, setShowEdit] = useState(false);
 
-  const { deleteBookById } = useContext(BooksContext);
+  const { deleteBookById } = useBooksContext();
 
   const url = `https://picsum.photos/seed/${book.id}/300/200`;
 
