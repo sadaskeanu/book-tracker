@@ -1,22 +1,24 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import BooksContext from "../context/books";
 import BookEdit from "./BookEdit";
 
-function BookShow({ book, onDelete, onEdit }) {
+function BookShow({ book }) {
   const [showEdit, setShowEdit] = useState(false);
+
+  const { deleteBookById } = useContext(BooksContext);
 
   const url = `https://picsum.photos/seed/${book.id}/300/200`;
 
   const handleDeleteClick = () => {
-    onDelete(book.id);
+    deleteBookById(book.id);
   };
 
   const handleEditClick = () => {
     setShowEdit(!showEdit);
   };
 
-  const handleOnSubmit = (id, newTitle) => {
+  const handleOnSubmit = () => {
     setShowEdit(false);
-    onEdit(id, newTitle);
   };
 
   let content = <h3>{book.title}</h3>;
